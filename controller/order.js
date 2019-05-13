@@ -55,10 +55,15 @@ router.get("/", auth, async (req, res, next) => {
   try {
     let user = req.session.user._id;
     // console.log(user);
+    // let { pn = 1, size = 4 } = req.query;
+    // let page = parseInt(pn);
+    // let p_size = parseInt(size);
+    // let count = await orderModel.count()
     let data = await orderModel
       .find({ user })
       .populate({ path: "user", select: "-password" })
-      .populate({ path: "goods" });
+      .populate({ path: "goods" })
+      .sort({_id:-1});
     res.json({
       code: 200,
       data

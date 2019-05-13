@@ -176,7 +176,17 @@ router.patch("/:id", auth, async (req, res, next) => {
     res.json({
       code: 200,
       msg: "修改成功",
-      data
+      data:{
+        username: data.username,
+        desc: data.desc,
+        phone: data.phone,
+        avatar: data.avatar,
+        // address: user.address,
+        _id: data._id,
+        city: data.city,
+        area: data.area,
+        stress: data.stress
+      }
     });
   } catch (error) {
     next(error);
@@ -210,6 +220,28 @@ router.patch("/pass/:id", auth, async (req, res, next) => {
     }
    
    
+  } catch (error) {
+    next(error);
+  }
+});
+//修改地址
+router.patch("/addr/:id", auth, async (req, res, next) => {
+  try {
+    let { id } = req.params
+    let {city,area,stress} = req.body
+      let data = await userModel.findOneAndUpdate({ _id: id }, {
+        $set: {
+          city,
+          area,
+          stress
+        }
+      }, { new: true })
+      res.json({
+        code: 200,
+        data,
+        msg: "修改成功"
+
+      });
   } catch (error) {
     next(error);
   }
