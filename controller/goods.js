@@ -30,14 +30,14 @@ router.get("/:cates", async (req, res, next) => {
   try {
     let { cates } = req.params;
     let count = await goodsModel.count();
-    let { pn = 1, size = 4 } = req.query;
-    let page = parseInt(pn);
-    let p_size = parseInt(size);
+    // let { pn = 1, size = 4 } = req.query;
+    // let page = parseInt(pn);
+    // let p_size = parseInt(size);
     let data = await goodsModel
       .find({ category: cates })
       .populate({ path: "category" })
-      .skip((page - 1) * p_size)
-      .limit(p_size)
+      // .skip((page - 1) * p_size)
+      // .limit(p_size)
       .sort({ _id: 1 });
     res.json({
       code: 200,

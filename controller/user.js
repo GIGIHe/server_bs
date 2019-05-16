@@ -17,7 +17,7 @@ router.post("/", async (req, res, next) => {
         const data = await userModel.create({
           username,
           password,
-          phone,
+          phone:parseInt(phone),
           avatar,
           desc,
           // address

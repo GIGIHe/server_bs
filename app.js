@@ -26,7 +26,7 @@ app.use(
     secret: "hejinjin2019",
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false, maxAge: 60000 * 60 * 7 },
+    cookie: { secure: false, maxAge: 60000 * 60 * 24 *7 },
     store: new MongoStore({
       mongooseConnection: mongooseConnection
       // ttl: 7 * 24 * 60 * 60 // = 7 days. Default
